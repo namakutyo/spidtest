@@ -31,7 +31,7 @@ UPLOAD_SPEED=$(grep -oP 'Upload:\s+\K[0-9]+\.?[0-9]* Mbps' /tmp/speedtest_output
 DATETIME=$(date '+%Y-%m-%d %H:%M:%S')
 
 if [[ -f /var/tmp/alamat.txt ]]; then
-    PREFIX=$(cat /var/tmp/alamat.txt)
+    PREFIX=$(cat /var/tmp/alamat.txt | sed 's/\\$//')
     FINAL_RESULT="$PREFIX\nDatetime: $DATETIME\nDownload: $DOWNLOAD_SPEED\nUpload: $UPLOAD_SPEED\n$RESULT_URL"
 else
     FINAL_RESULT="Datetime: $DATETIME\nDownload: $DOWNLOAD_SPEED\nUpload: $UPLOAD_SPEED\n$RESULT_URL"
